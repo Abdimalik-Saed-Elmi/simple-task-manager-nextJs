@@ -14,10 +14,14 @@ const createTask = async (req, res) => {
 };
 exports.createTask = createTask;
 const getTasks = async (_req, res) => {
-    const tasks = await prisma_1.prisma.task.findMany({
-        orderBy: { createdAt: "desc" },
-    });
-    res.json(tasks);
+    try {
+        const tasks = await prisma_1.prisma.task.findMany({ orderBy: { createdAt: "desc" } });
+        res.json(tasks);
+    }
+    catch (err) {
+        console.error("GET /tasks failed:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 };
 exports.getTasks = getTasks;
 const updateTask = async (req, res) => {
