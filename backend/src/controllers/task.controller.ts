@@ -16,12 +16,15 @@ export const createTask = async (req: Request, res: Response) => {
 };
 
 export const getTasks = async (_req: Request, res: Response) => {
-  const tasks = await prisma.task.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-
-  res.json(tasks);
+  try {
+    const tasks = await prisma.task.findMany({ orderBy: { createdAt: "desc" } });
+    res.json(tasks);
+  } catch (err) {
+    console.error("GET /tasks failed:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
+
 
 export const updateTask = async (req: Request, res: Response) => {
   const  id  = req.params.id as string;
