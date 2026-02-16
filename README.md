@@ -53,7 +53,7 @@ simple-task-manager-nextJs/
 ### 1. Clone repo
 
 ```
-git clone https://github.com/YOUR_USERNAME/simple-task-manager-nextJs.git
+git clone https://github.com/Abdimalik-Saed-Elmi/simple-task-manager-nextJs
 cd simple-task-manager-nextJs
 ```
 
